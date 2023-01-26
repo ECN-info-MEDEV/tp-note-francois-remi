@@ -63,7 +63,10 @@ public class Game {
         System.out.println(players.get(guesser).getName() + " choisi un code");
         for (int pawn=0; pawn < 4; pawn++) {
             System.out.println("Pion n°" + Integer.toString(pawn + 1));
-            System.out.println("Choisir parmi 0 : JAUNE, 1 : BLEU, 2 : ROUGE, 3 : VERT, 4 : BLANC, 5 : NOIR");
+            System.out.println("Choisir parmi :");
+            for (int i=0; i<6; i++) {
+                System.out.println(i + " : " + Pawn.getColorName(i));
+            }
             Pawn choice = null;
             while (choice == null) {
                 String input = scan.nextLine(); 
@@ -99,10 +102,14 @@ public class Game {
             
             for (int pawn=0; pawn < 4; pawn++) {
                 System.out.println("Pion n°" + Integer.toString(pawn + 1));
-                System.out.println("Choisir parmi 0 : JAUNE, 1 : BLEU, 2 : ROUGE, 3 : VERT, 4 : BLANC, 5 : NOIR");
+                System.out.println("Choisir parmi :");
+                for (int i=0; i<6; i++) {
+                    System.out.println(i + " : " + Pawn.getColorName(i));
+                }
+                String input = null;
                 Pawn choice = null;
                 while (choice == null) {
-                    String input = scan.nextLine(); 
+                    input = scan.nextLine(); 
                     try {
                         choice = new Pawn(Integer.parseInt(input));
                     } catch(Exception e) {
@@ -138,6 +145,9 @@ public class Game {
     
     private String cluesToString(LinkedList<Clue> clue) {
         String str = "";
+        if (clue.isEmpty()) {
+            return "Auucune indication";
+        }
         for (Clue c : clue) {
             str += Clue.getColorName(c.getColor());
             str += ' ';

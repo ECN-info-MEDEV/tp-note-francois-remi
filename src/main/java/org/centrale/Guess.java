@@ -41,12 +41,12 @@ public class Guess {
     public String toString(){
         String res = "[ ";
         for (int i=0; i<index; i++){
-            res += Pawn.getColorName(pawns[i].getColor()) + " , ";
+            res += Pawn.getColorName(pawns[i].getColor()) + ", ";
         }
         for (int i=index; i<4; i++){
-            res += "vide , ";
+            res += "null, ";
         }
-        res = res.substring(0, res.length()-2) +  "]";
+        res = res.substring(0, res.length()-2) +  " ]";
         return res;
     }
     
@@ -64,10 +64,10 @@ public class Guess {
             
             for (int i=0; i<4; i++){
                 for (int j=0; j<4; j++){
-                    if (!checkedPos[i] && code.get(i).getColor() == pawns[j].getColor()){
+                    if (!checkedPos[j] && code.get(i).getColor() == pawns[j].getColor()){
                         int state = (i==j) ? Clue.CORRECT : Clue.MISPLACED;
                         clues.add(new Clue(state));
-                        checkedPos[i] = true;
+                        checkedPos[j] = true;
                     }
                 }
                 

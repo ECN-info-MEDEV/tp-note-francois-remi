@@ -28,6 +28,8 @@ public class Game {
     /**
      * 
      */
+    private Integer roundNumber;
+    
     private static final Scanner scan = new Scanner(System.in);
     private int guesser;
     private static final String SEP = "---------------------------------------------------------------------------------------------------------";
@@ -56,6 +58,20 @@ public class Game {
             name = scan.next();
         }
         players.add(new Player(name));
+        System.out.println("Choisir le nombre de tour.");
+        roundNumber = null;
+        while (roundNumber == null) {
+            String input = scan.next();
+            try {
+                roundNumber = Integer.parseInt(input);
+                if (roundNumber % 2 == 1 && roundNumber > 0) {
+                    roundNumber = null;
+                    System.out.println("Le nombre doit être paire");
+                }
+            } catch(Exception e) {
+                System.out.println("Invalid Expression");
+            }   
+        }
     }
     
     private void chooseCode() {
@@ -69,7 +85,7 @@ public class Game {
             }
             Pawn choice = null;
             while (choice == null) {
-                String input = scan.nextLine(); 
+                String input = scan.next(); 
                 try {
                    choice = new Pawn(Integer.parseInt(input));
                 } catch(Exception e) {
@@ -163,8 +179,11 @@ public class Game {
      */
     public void start() {
         choosePlayers();
-        boolean finish = false;
-        while(!finish) {
+        int round = 0;
+        while(round < roundNumber) {
+            System.out.println(SEP);
+            System.out.println("tour " + (round+1) + "/" + roundNumber);
+            System.out.println(SEP);
             chooseCode();
             System.out.println("Point sur les scores");
             System.out.println("    -"+players.get(0));
@@ -172,6 +191,19 @@ public class Game {
             System.out.println(players.get(guesser).getName() + " devine le code");
             nextRound();
             guesser = 1 - guesser;
+            round++;
+        }
+        System.out.println(SEP);
+        System.out.println("Fin de la partie");
+        int score1 = players.get(0).getScore();
+        int score2 = players.get(1).getScore();
+        
+        if ( score1 > score2) {
+            System.out.println(players.get(0).getName() + " gagne la partie avec " + score1 + " points");
+        } else if (score1 == score2) {
+            System.out.println("Egalité, les deux joueurs gagnent");
+        } else {
+            System.out.println(players.get(1).getName() + " gagne la partie" + score2 + " points");
         }
     }
     

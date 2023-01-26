@@ -25,6 +25,10 @@ public class Player {
         return score;
     }
     
+    public String getName() {
+        return this.name;
+    }
+    
     @Override
     public String toString() {
         return name + " " + score + " points"; 

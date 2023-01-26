@@ -18,7 +18,7 @@ public class Clue {
         if (type == 0 || type == 1) {
             this.type = type;
         } else {
-            throw new Exception("Wrong value thrown");
+            throw new WrongValueException(type);
         }    
     }
     public int getType() {

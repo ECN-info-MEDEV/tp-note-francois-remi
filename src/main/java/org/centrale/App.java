@@ -10,5 +10,7 @@ public class App
     {
         Pawn pawn1 = new Pawn(Pawn.YELLOW);
         Pawn pawn2 = new Pawn(8);
+        Game g = new Game();
+        g.start();
     }
 }

@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale;
 
 /**
  *
- * @author remir
+ * @author François
+ * @author Rémi
  */
 public class Player {
     private String name;
@@ -16,19 +13,31 @@ public class Player {
         this.name = name;
         score = 0;
     }
-    
+    /**
+     * Ajoute des points au score du joueur
+     * @param point 
+     */
     public void addScore(int point) {
         score += point;
     }
-    
+    /**
+     * Getter du score du joueur
+     * @return 
+     */
     public int getScore() {
         return score;
     }
-    
+    /**
+     * Getter du nom du joueur
+     * @return 
+     */
     public String getName() {
         return this.name;
     }
-    
+    /**
+     * Affiche le nom du joueur ainsi que son score
+     * @return 
+     */
     @Override
     public String toString() {
         return name + " " + score + " points"; 

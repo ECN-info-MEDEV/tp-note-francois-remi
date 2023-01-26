@@ -8,20 +8,24 @@ package org.centrale;
  *
  * @author remir
  */
-public class Clue {
-    public final static int MISPLACED = 0;
-    public final static int CORRECT = 1;
+public class Clue extends Pawn{
     
-    private int type;
+    private static final int maxColor = 2;
     
-    public Clue(int type) throws Exception {
-        if (type == 0 || type == 1) {
-            this.type = type;
-        } else {
-            throw new WrongValueException(type);
-        }    
+    @Override
+    public int maxColor(){
+        return 2;
     }
-    public int getType() {
-        return type;
+    
+    public final static int MISPLACED = Pawn.WHITE;
+    public final static int CORRECT = Pawn.BLACK;
+    
+    public Clue(){
+        super();
     }
+    
+    public Clue(int color){
+        super(color);
+    }  
+    
 }

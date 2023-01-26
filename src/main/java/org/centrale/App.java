@@ -8,6 +8,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        Pawn pawn1 = new Pawn(Pawn.YELLOW);
+        Pawn pawn2 = new Pawn(8);
     }
 }

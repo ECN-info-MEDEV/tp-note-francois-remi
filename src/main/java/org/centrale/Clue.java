@@ -26,6 +26,11 @@ public class Clue extends Pawn{
     
     public Clue(int color){
         super(color);
-    }  
+    }
+    
+    @Override
+    public String toString() {
+        return  Integer.toString(this.getColor());
+    }
     
 }

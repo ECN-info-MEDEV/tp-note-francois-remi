@@ -1,17 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale;
 
 /**
- *
- * @author remir
+ * Pawn
+ * @author Rémi Ravelli
+ * @author François Marie
  */
 public class Pawn {
     
     private static final int minColor = 0;
-    private static final int maxColor = 5;
     
     public static final int WHITE = 0;
     public static final int BLACK = 1;
@@ -23,22 +19,45 @@ public class Pawn {
     
     private int color;
     
+    /**
+     * Default constructor.
+     * The color is set as red.
+     */
     public Pawn () {
         color = RED;
     }
-
+    
+    /**
+     * Constructor with a given color.
+     * The color must be between minColor and maxColor().
+     * @param color Color of the pawn.
+     */
     public Pawn (int color){
         setColor(color);
     }
     
+    /**
+     * Get maxColor constant for the class.
+     * Is impletement as a method so it can be overriden by children classes.
+     * @return maxColor
+     */
     public int maxColor(){
         return 5;
     }
     
+    /**
+     * Get color of pawn
+     * @return color
+     */
     public int getColor() {
         return color;
     }
 
+    /**
+     * Set the color of the pawn.
+     * Color must be between minColor and maxColor.
+     * @param color new color
+     */
     public void setColor(int color) {
         try{
             if (color < minColor || color > maxColor()){
@@ -50,14 +69,13 @@ public class Pawn {
             System.out.println("Defaulting to RED.");
             this.color = RED;
         }
-    }
-
-    public static int getMaxColor() {
-        return maxColor;
-    }
+    } 
     
-    
-        
+    /**
+     * Convert index-based color into a string.
+     * @param color Color to convert
+     * @return name of the color
+     */
     public static String getColorName(int color){
         switch(color){
             case 0:

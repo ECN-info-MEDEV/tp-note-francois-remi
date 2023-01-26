@@ -3,12 +3,13 @@ package org.centrale;
 import java.util.LinkedList;
 
 /**
- *
- * @author remir
+ * Guess of the player that must be compared to the current code.
+ * @author Rémi Ravelli
+ * @author François Marie
  */
 public class Guess {
     
-    private Pawn[] pawns;
+    private Pawn[] pawns; // List of guessed pawns
     private int index; // Index of next pawn to modify
     
     public Guess() {
@@ -16,16 +17,27 @@ public class Guess {
         index = 0;
     }
     
+    /**
+     * Get pawn with index.
+     * The pawn's index must be inferior to the index of the last added pawn.
+     * @param i index of pawn
+     * @return pawn
+     */
     public Pawn get(int i){
-        if (i>=0 && i<pawns.length){
+        if (i>=0 && i<index){
             return pawns[i];
         } else {
-            System.out.println("Invalid index ! Must be between 0 and " + pawns.length);
+            System.out.println("Invalid index ! Must be between 0 and " + index);
             return null;
         }
         
     }
     
+    /**
+     * Add a pawn to the guess.
+     * Throw a wrong value execption if the guess is already completed.
+     * @param pawn Pawn to add
+     */
     public void add(Pawn pawn){
         try{
             if (index > 3){
@@ -38,6 +50,10 @@ public class Guess {
         }
     }
     
+    /**
+     * Print each pawn color in a array-like shape.
+     * @return string
+     */
     public String toString(){
         String res = "[ ";
         for (int i=0; i<index; i++){
@@ -50,10 +66,18 @@ public class Guess {
         return res;
     }
     
+    /**
+     * Reset the guess
+     */
     public void reset(){
         index = 0;
     }
     
+    /**
+     * Compute the list of clues with a given code to compare with.
+     * @param code Code to compare
+     * @return LinkedList of clues.
+     */
     public LinkedList<Clue> getClues(Guess code){
         LinkedList<Clue> clues = new LinkedList<>();
         try {

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.centrale;
 
 import java.util.LinkedList;
@@ -9,13 +5,29 @@ import java.util.Scanner;
 
 /**
  *
- * @author remir
+ * @author François
+ * @author Rémi
  */
 public class Game {
-    private LinkedList<Guess> guesses;
-    private LinkedList<Player> players;
-    private LinkedList<LinkedList<Clue>> clues;
-    private Guess code;
+    /**
+     * Les essai du décodeur
+     */
+    private final LinkedList<Guess> guesses;
+    /**
+     * Les joueurs de la partie
+     */
+    private final LinkedList<Player> players;
+    /**
+     * Les indications
+     */
+    private final LinkedList<LinkedList<Clue>> clues;
+    /**
+     * Le code à trouver
+     */
+    private final Guess code;
+    /**
+     * 
+     */
     private static final Scanner scan = new Scanner(System.in);
     private int guesser;
     private static final String SEP = "---------------------------------------------------------------------------------------------------------";
@@ -28,7 +40,8 @@ public class Game {
         guesser = 0;
     }
     
-    public void choosePlayers() {
+    
+    private void choosePlayers() {
         String name = null;
         
         System.out.println("Comment s'appelle le premier joueur ?");
@@ -45,7 +58,7 @@ public class Game {
         players.add(new Player(name));
     }
     
-    public void chooseCode() {
+    private void chooseCode() {
         code.reset();
         System.out.println(players.get(guesser).getName() + " choisi un code");
         for (int pawn=0; pawn < 4; pawn++) {
@@ -71,7 +84,7 @@ public class Game {
         }
     }
     
-    public void nextRound() {
+    private void nextRound() {
         boolean win = false;
         Guess currentGuess = new Guess();
         guesses.clear();
@@ -107,6 +120,7 @@ public class Game {
             
             win = combinationCorrect(clue);
         }
+        System.out.println(SEP);
         if (win) {
             System.out.println("Voues avez trouvé le code du " + guesses.size() + "eme coups");
         } else {
@@ -134,7 +148,9 @@ public class Game {
     private boolean combinationCorrect(LinkedList<Clue> clue) {
         return (clue.size() == 4 && clue.get(0).getColor() == Clue.BLACK && clue.get(1).getColor() == Clue.BLACK && clue.get(2).getColor() == Clue.BLACK && clue.get(3).getColor() == Clue.BLACK);
     } 
-    
+    /**
+     * Fontion de lancement de la partie
+     */
     public void start() {
         choosePlayers();
         boolean finish = false;

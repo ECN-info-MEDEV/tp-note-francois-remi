@@ -60,14 +60,23 @@ public class Guess {
             if (index < 3){
                 throw new Exception("Guess not completed");
             }
-            boolean[] checkedPos = {false, false, false, false};
+            boolean[] checkedPosCode = {false, false, false, false};
+            boolean[] checkedPosGuess = {false, false, false, false};
+            
+            for (int i=0; i<4; i++){
+                if (code.get(i).getColor() == pawns[i].getColor()){
+                    clues.add(new Clue(Clue.CORRECT));
+                    checkedPosGuess[i] = true;
+                    checkedPosCode[i] = true;
+                }
+            }
             
             for (int i=0; i<4; i++){
                 for (int j=0; j<4; j++){
-                    if (!checkedPos[j] && code.get(i).getColor() == pawns[j].getColor()){
-                        int state = (i==j) ? Clue.CORRECT : Clue.MISPLACED;
-                        clues.add(new Clue(state));
-                        checkedPos[j] = true;
+                    if ((i!=j) && !checkedPosGuess[j] && !checkedPosCode[i] && code.get(i).getColor() == pawns[j].getColor()){
+                        clues.add(new Clue(Clue.MISPLACED));
+                        checkedPosGuess[j] = true;
+                        checkedPosCode[i] = true;
                     }
                 }
                 

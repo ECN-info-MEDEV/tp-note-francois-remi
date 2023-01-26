@@ -25,6 +25,14 @@ public class Pawn {
     }
 
     public Pawn (int color){
+        setColor(color);
+    }
+    
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
         try{
             if (color < 0 || color > 5){
                 throw new WrongValueException(color);
@@ -35,14 +43,6 @@ public class Pawn {
             System.out.println("Defaulting to RED.");
             this.color = RED;
         }
-    }
-    
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
     }
         
 }

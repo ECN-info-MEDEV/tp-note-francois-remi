@@ -56,4 +56,16 @@ public class PawnTest {
         assertEquals(color, instance.getColor());
     }
     
+    /**
+     * Test of setColor method with invalid color, of class Pawn.
+     */
+    @Test
+    public void testWrongColorValue() {
+        System.out.println("wrongColorValue");
+        int color = -1;
+        Pawn instance = new Pawn();
+        instance.setColor(color);
+        assertEquals(Pawn.RED, instance.getColor());
+    }
+    
 }
